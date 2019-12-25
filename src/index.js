@@ -1,12 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import ReactDom from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './components/app';
+import ErrorBoundary from "./components/error-boundry";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import RecordService from "./services/record-service";
+import { RecordServiceProvider } from "./components/record-context";
+
+import store from "./store";
+
+const onlineRecordService = new RecordService();
+
+ReactDom.render(
+  <Provider store={store}>
+    <ErrorBoundary>
+      <RecordServiceProvider value={onlineRecordService}>
+        <Router>
+          <App />
+        </Router>
+      </RecordServiceProvider>
+    </ErrorBoundary>
+  </Provider>,
+  document.getElementById('root')
+);
