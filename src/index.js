@@ -11,12 +11,12 @@ import { RecordServiceProvider } from "./components/record-context";
 
 import store from "./store";
 
-const onlineRecordService = new RecordService();
+const recordService = new RecordService();
 
 ReactDom.render(
   <Provider store={store}>
     <ErrorBoundary>
-      <RecordServiceProvider value={onlineRecordService}>
+      <RecordServiceProvider value={recordService}>
         <Router>
           <App />
         </Router>

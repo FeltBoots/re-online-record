@@ -1,7 +1,8 @@
 import React from "react";
+import RecordForm from "../record-form";
 
 const HomePage = () => {
-  return <div>Home page</div>
+  return <RecordForm />
 };
 
 export default HomePage;
