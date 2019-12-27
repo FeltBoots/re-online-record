@@ -11,12 +11,12 @@ class CityPickerContainer extends Component {
     this.props.fetchCities();
   }
 
-  pickCity = (cityId) => {
-    fetchCityInfo(cityId);
-  };
-
   render() {
-    const { cities, time } = this.props;
+    const {
+      cities,
+      city,
+      fetchCityInfo,
+    } = this.props;
 
     return (
       <Fragment>
@@ -24,19 +24,22 @@ class CityPickerContainer extends Component {
           items={cities}
           value={'id'}
           name={'name'}
-          />
-        <div>
-          <p>ул. Малая 9</p>
-          <p>79990010101</p>
-          <p>Стоимость услуги 1000р</p>
-        </div>
+          onSelect={fetchCityInfo} />
+        {
+          city ?
+            <div>
+              <p>{city.address}</p>
+              <p>{city.phones}</p>
+              <p>{city.price}</p>
+            </div> : null
+        }
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = ({ cities, time }) => {
-  return { cities, time };
+const mapStateToProps = ({ data: { cities }, formValues: { city } }) => {
+  return { cities, city };
 };
 
 const mapDispatchToProps = (dispatch, { recordService }) => {

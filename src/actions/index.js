@@ -38,6 +38,13 @@ const cityInfoError = (error) => {
   }
 };
 
+const selectCity = (city) => {
+  return {
+    type: 'SELECT_CITY',
+    payload: city
+  }
+};
+
 const fetchCityInfo = (recordService) => (cityId) => (dispatch) => {
   dispatch(cityInfoRequested());
   recordService.getCityInfo(cityId)
@@ -50,6 +57,7 @@ const fetchCities = (recordService) => () => (dispatch) => {
   recordService.getCities()
     .then((data) => {
       dispatch(citiesLoaded(data));
+      dispatch(selectCity(data[0]));
       fetchCityInfo(recordService)(data[0])(dispatch);
     })
     .catch((err) => dispatch(citiesError(err)));
