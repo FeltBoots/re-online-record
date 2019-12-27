@@ -57,7 +57,17 @@ export default class RecordService {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(this.data.cities);
-      });
+        // reject(new Error('error'));
+      }, 700);
     });
   };
+
+  getCityInfo() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.data.time);
+        // reject(new Error('error'));
+      }, 700);
+    });
+  }
 };

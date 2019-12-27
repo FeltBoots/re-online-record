@@ -18,13 +18,44 @@ const citiesError = (error) => {
   }
 };
 
+const cityInfoRequested = () => {
+  return {
+    type: 'FETCH_CITY_INFO_REQUEST',
+  }
+};
+
+const cityInfoLoaded = (cityInfo) => {
+  return {
+    type: 'FETCH_CITY_INFO_SUCCESS',
+    payload: cityInfo
+  }
+};
+
+const cityInfoError = (error) => {
+  return {
+    type: 'FETCH_CITY_INFO_FAILURE',
+    payload: error
+  }
+};
+
+const fetchCityInfo = (recordService) => (cityId) => (dispatch) => {
+  dispatch(cityInfoRequested());
+  recordService.getCityInfo(cityId)
+    .then((data) => dispatch(cityInfoLoaded(data)))
+    .catch((err) => dispatch(cityInfoError(err)));
+};
+
 const fetchCities = (recordService) => () => (dispatch) => {
   dispatch(citiesRequested());
   recordService.getCities()
-    .then((data) => dispatch(citiesLoaded(data)))
+    .then((data) => {
+      dispatch(citiesLoaded(data));
+      fetchCityInfo(recordService)(data[0])(dispatch);
+    })
     .catch((err) => dispatch(citiesError(err)));
 };
 
 export {
   fetchCities,
+  fetchCityInfo,
 };
