@@ -1,10 +1,20 @@
 import React from "react";
-import './select-item.css';
+import './select.css';
 
-const Select = () => {
+const Select = ({ items, value, name, onChange }) => {
+  const options = items.map((item, idx) => {
+    return (
+     <option
+       key={`option_${idx}`}
+       value={item[value]}>
+       { item[name] }
+     </option>
+    )
+  });
+
   return (
-    <select>
-
+    <select onChange={onChange}>
+      { options }
     </select>
   );
 };

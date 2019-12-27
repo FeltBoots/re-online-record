@@ -24,7 +24,7 @@ class CityPickerContainer extends Component {
           items={cities}
           value={'id'}
           name={'name'}
-          onSelect={fetchCityInfo} />
+          onChange={fetchCityInfo} />
         {
           city ?
             <div>
