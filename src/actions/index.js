@@ -57,8 +57,8 @@ const fetchCities = (recordService) => () => (dispatch) => {
   recordService.getCities()
     .then((data) => {
       dispatch(citiesLoaded(data));
-      dispatch(selectCity(data[0]));
-      fetchCityInfo(recordService)(data[0])(dispatch);
+      dispatch(selectCity(data.cities[0]));
+      fetchCityInfo(recordService)(data.cities[0].id)(dispatch);
     })
     .catch((err) => dispatch(citiesError(err)));
 };
