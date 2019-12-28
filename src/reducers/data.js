@@ -36,9 +36,10 @@ const updateData = (state, action) => {
         error: action.payload,
       };
     case 'FETCH_TIMETABLE_SUCCESS':
+      const { days, time } = action.payload;
       return {
         cities: state.data.cities,
-        timetable: action.payload,
+        timetable: { days, time },
         loading: false,
         error: null,
       };

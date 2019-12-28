@@ -1,3 +1,5 @@
+import { formatTimetable } from "../utils";
+
 const citiesLoaded = (newCities) => {
   return {
     type: 'FETCH_CITIES_SUCCESS',
@@ -18,20 +20,20 @@ const citiesError = (error) => {
   }
 };
 
-const cityInfoRequested = () => {
+const timetableRequested = () => {
   return {
     type: 'FETCH_TIMETABLE_REQUEST',
   }
 };
 
-const cityInfoLoaded = (cityInfo) => {
+const timetableLoaded = (cityInfo) => {
   return {
     type: 'FETCH_TIMETABLE_SUCCESS',
     payload: cityInfo
   }
 };
 
-const cityInfoError = (error) => {
+const timetableError = (error) => {
   return {
     type: 'FETCH_TIMETABLE_FAILURE',
     payload: error
@@ -46,10 +48,10 @@ const selectCity = (city) => {
 };
 
 const fetchTimetable = (recordService) => (cityId) => (dispatch) => {
-  dispatch(cityInfoRequested());
+  dispatch(timetableRequested());
   recordService.getCityInfo(cityId)
-    .then((data) => dispatch(cityInfoLoaded(data)))
-    .catch((err) => dispatch(cityInfoError(err)));
+    .then((data) => dispatch(timetableLoaded(formatTimetable(data))))
+    .catch((err) => dispatch(timetableError(err)));
 };
 
 const fetchCities = (recordService) => () => (dispatch) => {
