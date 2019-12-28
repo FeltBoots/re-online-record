@@ -4,7 +4,10 @@ import updateFormValues from "./form-values";
 const initialState = {
   data: {
     cities: [],
-    time: [],
+    timetable: {
+      days: [],
+      time: [],
+    },
     loading: true,
     error: null,
   },

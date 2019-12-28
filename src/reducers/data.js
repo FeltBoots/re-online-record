@@ -3,42 +3,42 @@ const updateData = (state, action) => {
     case 'FETCH_CITIES_REQUEST':
       return {
         cities: [],
-        time: [],
+        timetable: {},
         loading: true,
         error: null,
       };
     case 'FETCH_CITIES_SUCCESS':
       return {
         cities: action.payload,
-        time: [],
+        timetable: {},
         loading: false,
         error: null,
       };
     case 'FETCH_CITIES_FAILURE':
       return {
         cities: [],
-        time: [],
+        timetable: {},
         loading: false,
         error: action.payload,
       };
-    case 'FETCH_CITY_INFO_REQUEST':
+    case 'FETCH_TIMETABLE_REQUEST':
       return {
         cities: state.data.cities,
-        time: [],
+        timetable: {},
         loading: true,
         error: null,
       };
-    case 'FETCH_CITY_INFO_FAILURE':
+    case 'FETCH_TIMETABLE_FAILURE':
       return {
         cities: state.data.cities,
-        time: [],
+        timetable: {},
         loading: false,
         error: action.payload,
       };
-    case 'FETCH_CITY_INFO_SUCCESS':
+    case 'FETCH_TIMETABLE_SUCCESS':
       return {
         cities: state.data.cities,
-        time: action.payload,
+        timetable: action.payload,
         loading: false,
         error: null,
       };

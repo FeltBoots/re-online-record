@@ -20,20 +20,20 @@ const citiesError = (error) => {
 
 const cityInfoRequested = () => {
   return {
-    type: 'FETCH_CITY_INFO_REQUEST',
+    type: 'FETCH_TIMETABLE_REQUEST',
   }
 };
 
 const cityInfoLoaded = (cityInfo) => {
   return {
-    type: 'FETCH_CITY_INFO_SUCCESS',
+    type: 'FETCH_TIMETABLE_SUCCESS',
     payload: cityInfo
   }
 };
 
 const cityInfoError = (error) => {
   return {
-    type: 'FETCH_CITY_INFO_FAILURE',
+    type: 'FETCH_TIMETABLE_FAILURE',
     payload: error
   }
 };
@@ -45,7 +45,7 @@ const selectCity = (city) => {
   }
 };
 
-const fetchCityInfo = (recordService) => (cityId) => (dispatch) => {
+const fetchTimetable = (recordService) => (cityId) => (dispatch) => {
   dispatch(cityInfoRequested());
   recordService.getCityInfo(cityId)
     .then((data) => dispatch(cityInfoLoaded(data)))
@@ -58,12 +58,12 @@ const fetchCities = (recordService) => () => (dispatch) => {
     .then((data) => {
       dispatch(citiesLoaded(data));
       dispatch(selectCity(data.cities[0]));
-      fetchCityInfo(recordService)(data.cities[0].id)(dispatch);
+      fetchTimetable(recordService)(data.cities[0].id)(dispatch);
     })
     .catch((err) => dispatch(citiesError(err)));
 };
 
 export {
   fetchCities,
-  fetchCityInfo,
+  fetchTimetable,
 };
