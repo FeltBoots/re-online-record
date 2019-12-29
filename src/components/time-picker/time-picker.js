@@ -16,11 +16,13 @@ const TimePickerContainer = ({ days, availableTime, selectDay, selectTime }) => 
         items={days}
         value={'id'}
         name={'day'}
+        defaultValue={'День'}
         onChange={selectDay} />
       <Select
         items={availableTime}
         value={'id'}
         name={'time'}
+        defaultValue={'Время'}
         onChange={selectTime} />
     </Row>
   )

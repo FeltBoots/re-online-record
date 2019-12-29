@@ -2,7 +2,15 @@ import React from "react";
 import './select.css';
 import '../app/app.css';
 
-const Select = ({ items, value, name, onChange }) => {
+const Select = (props) => {
+  const {
+    items,
+    value,
+    name,
+    onChange,
+    defaultValue
+  } = props;
+
   const options = items.map((item, idx) => {
     return (
       <option
@@ -13,11 +21,22 @@ const Select = ({ items, value, name, onChange }) => {
     )
   });
 
+  const defaultOption = defaultValue ?
+    (<option
+      key={defaultValue}
+      disabled
+      hidden
+      value={defaultValue}>
+      {defaultValue}
+    </option>) : null;
+
   return (
     <select
       className="select input"
+      defaultValue={defaultValue}
       onChange={(e) => { onChange(e.target.value) }}>
       { options }
+      { defaultOption }
     </select>
   );
 };
