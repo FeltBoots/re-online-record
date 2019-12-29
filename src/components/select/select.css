@@ -1,0 +1,13 @@
+.select {
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-size: 27px;
+    -moz-appearance: none;
+    text-indent: .01px;
+    text-overflow: "";
+    background-color: #e8e8e8;
+    background-image: url('arrow.png');
+    padding: 0 20px;
+    font-size: 18px;
+    height: 61px;
+}

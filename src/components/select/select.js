@@ -1,5 +1,6 @@
 import React from "react";
 import './select.css';
+import '../app/app.css';
 
 const Select = ({ items, value, name, onChange }) => {
   const options = items.map((item, idx) => {
@@ -13,7 +14,9 @@ const Select = ({ items, value, name, onChange }) => {
   });
 
   return (
-    <select onChange={(e) => { onChange(e.target.value) }}>
+    <select
+      className="select input"
+      onChange={(e) => { onChange(e.target.value) }}>
       { options }
     </select>
   );
