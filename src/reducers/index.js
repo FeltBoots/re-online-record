@@ -7,15 +7,17 @@ const initialState = {
     timetable: {
       days: [],
       time: [],
+      availableTime: [],
     },
     loading: true,
     error: null,
   },
   formValues: {
     city: null,
+    day: null,
     time: null,
-    name: null,
-    phone: null,
+    // name: null,
+    // phone: null,
   },
 };
 

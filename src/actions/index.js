@@ -40,17 +40,43 @@ const timetableError = (error) => {
   }
 };
 
-const selectCity = (city) => {
+const setAvailableTime = (timeIdx) => {
+  return {
+    type: 'SET_AVAILABLE_TIME',
+    payload: timeIdx
+  }
+};
+
+const selectCity = (cityId) => {
   return {
     type: 'SELECT_CITY',
-    payload: city
+    payload: cityId
   }
+};
+
+const selectTime = () => (idx) => (dispatch) => {
+  dispatch({
+    type: 'SELECT_TIME',
+    payload: idx,
+  });
+};
+
+const selectDay = () => (idx) => (dispatch) => {
+  dispatch({
+    type: 'SELECT_DAY',
+    payload: idx
+  });
+  dispatch(setAvailableTime(idx));
 };
 
 const fetchTimetable = (recordService) => (cityId) => (dispatch) => {
   dispatch(timetableRequested());
   recordService.getCityInfo(cityId)
-    .then((data) => dispatch(timetableLoaded(formatTimetable(data))))
+    .then((data) => {
+      dispatch(timetableLoaded(formatTimetable(data)));
+      selectDay()(0)(dispatch);
+      dispatch(selectCity(cityId));
+    })
     .catch((err) => dispatch(timetableError(err)));
 };
 
@@ -58,7 +84,7 @@ const fetchCities = (recordService) => () => (dispatch) => {
   dispatch(citiesRequested());
   recordService.getCities()
     .then((data) => {
-      dispatch(citiesLoaded(data));
+      dispatch(citiesLoaded(data.cities));
       dispatch(selectCity(data.cities[0]));
       fetchTimetable(recordService)(data.cities[0].id)(dispatch);
     })
@@ -68,4 +94,7 @@ const fetchCities = (recordService) => () => (dispatch) => {
 export {
   fetchCities,
   fetchTimetable,
+  setAvailableTime,
+  selectDay,
+  selectTime,
 };

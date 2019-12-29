@@ -43,6 +43,14 @@ const updateData = (state, action) => {
         loading: false,
         error: null,
       };
+    case 'SET_AVAILABLE_TIME':
+      const availableTime = state.data.timetable.time[action.payload];
+      return {
+        cities: state.data.cities,
+        timetable: { ...state.data.timetable, availableTime },
+        loading: false,
+        error: null,
+      };
     default:
       return state.data;
   }
