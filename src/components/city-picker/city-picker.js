@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import Select from "../select";
 import { bindActionCreators } from "redux";
-import { fetchCities, fetchCityInfo } from "../../actions";
+import { fetchCities, fetchTimetable } from "../../actions";
 import { compose } from "../../utils";
 import withRecordService from "../hoc";
 import { connect } from "react-redux";
@@ -15,8 +15,12 @@ class CityPickerContainer extends Component {
     const {
       cities,
       city,
-      fetchCityInfo,
+      fetchTimetable,
     } = this.props;
+
+    if (!cities) {
+      return <p>loading</p>;
+    }
 
     return (
       <Fragment>
@@ -24,7 +28,7 @@ class CityPickerContainer extends Component {
           items={cities}
           value={'id'}
           name={'name'}
-          onChange={fetchCityInfo} />
+          onChange={fetchTimetable} />
         {
           city ?
             <div>
@@ -45,7 +49,7 @@ const mapStateToProps = ({ data: { cities }, formValues: { city } }) => {
 const mapDispatchToProps = (dispatch, { recordService }) => {
   return bindActionCreators({
     fetchCities: fetchCities(recordService),
-    fetchCityInfo: fetchCityInfo(recordService),
+    fetchTimetable: fetchTimetable(recordService),
   }, dispatch)
 };
 
