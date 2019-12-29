@@ -33,7 +33,11 @@ const getFreeTime = (data) => {
   const time = [];
   sortedDayNames.forEach((day, idx) => {
     days[idx] = { id: idx, day : formatDayName(day) };
-    time[idx] = { id: idx, time: formatDayTime(freeDayTime[day]) };
+    const formattedTime = formatDayTime(freeDayTime[day]);
+    time[idx] = [];
+    formattedTime.forEach((t, i) => {
+      time[idx].push({ id: i, time: t });
+    });
   });
   return { days, time };
 };
