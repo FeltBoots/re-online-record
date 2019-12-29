@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app {
+    font-family: Open Sans,Helvetica,Arial,sans-serif;
+    line-height: 1.55;
+    color: #181818;
+    min-width: 300px;
+    margin: 0 auto 0 auto;
+    max-width: 540px;
+}
+
+.input {
+    -webkit-appearance: none;
+    display: block;
+    outline: none;
+    width: 100%;
+    color: #181818;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    background-color: #e8e8e8;
+    -webkit-transition: all .15s ease-out;
+    transition: all .15s ease-out;
+    height: 61px;
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+.input:focus {
+    background-color: #fff;
+    border-color: #c1c1c1;
+    -webkit-box-shadow: 0 5px 15px 0 hsla(0,0%,55%,.5);
+    box-shadow: 0 5px 15px 0 hsla(0,0%,55%,.5);
+}
