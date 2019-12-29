@@ -3,6 +3,7 @@ import Select from "../select";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectDay, selectTime } from "../../actions";
+import Row from "../row";
 
 const TimePickerContainer = ({ days, availableTime, selectDay, selectTime }) => {
   if (!days || !availableTime) {
@@ -10,7 +11,7 @@ const TimePickerContainer = ({ days, availableTime, selectDay, selectTime }) => 
   }
 
   return (
-    <div>
+    <Row>
       <Select
         items={days}
         value={'id'}
@@ -21,7 +22,7 @@ const TimePickerContainer = ({ days, availableTime, selectDay, selectTime }) => 
         value={'id'}
         name={'time'}
         onChange={selectTime} />
-    </div>
+    </Row>
   )
 };
 
