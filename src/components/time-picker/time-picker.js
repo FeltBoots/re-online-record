@@ -6,10 +6,6 @@ import { selectDay, selectTime } from "../../actions";
 import Row from "../row";
 
 const TimePickerContainer = ({ days, availableTime, selectDay, selectTime }) => {
-  if (!days || !availableTime) {
-    return null;
-  }
-
   return (
     <Row>
       <Select

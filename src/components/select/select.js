@@ -1,44 +1,63 @@
-import React from "react";
+import React, { Component } from "react";
 import './select.css';
 import '../app/app.css';
 
-const Select = (props) => {
-  const {
-    items,
-    value,
-    name,
-    onChange,
-    defaultValue
-  } = props;
+export default class Select extends Component {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.items !== this.props.items) {
+      this.setState({
+        selected: null
+      });
+    }
+  }
 
-  const options = items.map((item, idx) => {
+  state = {
+    selected: null
+  };
+
+  render() {
+    const {
+      items,
+      value,
+      name,
+      onChange,
+      defaultValue,
+    } = this.props;
+
+    const { selected } = this.state;
+
+    const options = items ? items.map((item, idx) => {
+      return (
+        <option
+          key={`option_${idx}`}
+          value={item[value]}>
+          {item[name]}
+        </option>
+      )
+    }) : null;
+
+    const defaultOption = defaultValue ?
+      (<option
+        key={defaultValue}
+        hidden
+        disabled
+        value={defaultValue}>
+        {defaultValue}
+      </option>) : null;
+
     return (
-      <option
-        key={`option_${idx}`}
-        value={item[value]}>
-        { item[name] }
-      </option>
-    )
-  });
-
-  const defaultOption = defaultValue ?
-    (<option
-      key={defaultValue}
-      disabled
-      hidden
-      value={defaultValue}>
-      {defaultValue}
-    </option>) : null;
-
-  return (
-    <select
-      className="select input"
-      defaultValue={defaultValue}
-      onChange={(e) => { onChange(e.target.value) }}>
-      { options }
-      { defaultOption }
-    </select>
-  );
-};
-
-export default Select;
+      <select
+        className="select input"
+        value={selected ? selected : defaultValue}
+        onChange={(e) => {
+          onChange(e.target.value);
+          this.setState({
+            selected: e.target.value
+          });
+        }}>
+        {options}
+        {defaultOption}
+      </select>
+    );
+  };
+}
