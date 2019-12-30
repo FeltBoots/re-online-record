@@ -17,12 +17,17 @@ const updateValidationErrors = (state, action) => {
         ...formValues,
         phoneError,
       };
-    case 'VALIDATE_SELECT':
+    case 'VALIDATE_DAY':
       const dayError = !!!action.payload;
-      console.log(dayError);
       return {
         ...formValues,
         dayError,
+      };
+    case 'VALIDATE_TIME':
+      const timeError = !!!action.payload;
+      return {
+        ...formValues,
+        timeError,
       };
     default:
       return state.validationErrors;

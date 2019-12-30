@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Select from "../select";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { selectDay, selectTime, validateSelect } from "../../actions";
+import { selectDay, selectTime, validateDay, validateTime } from "../../actions";
 import Row from "../row";
 import ValidationError from "../validation-error";
 
@@ -12,12 +12,15 @@ const TimePickerContainer = (props) => {
     availableTime,
     selectDay,
     selectTime,
-    validateSelect,
+    validateDay,
+    validateTime,
     dayError,
     timeError,
   } = props;
 
   const disabled = availableTime ? 0 : 1;
+  const dayClass = dayError ? 'error' : null;
+  const timeClass = timeError ? 'error' : null;
 
   return (
     <Fragment>
@@ -27,16 +30,18 @@ const TimePickerContainer = (props) => {
           value={'id'}
           name={'day'}
           defaultValue={'День'}
-          onBlur={validateSelect}
-          onChange={selectDay} />
+          onBlur={validateDay}
+          onChange={selectDay}
+          clazz={dayClass} />
         <Select
           items={availableTime}
           value={'id'}
           name={'time'}
           defaultValue={'Время'}
-          onBlur={validateSelect}
+          onBlur={validateTime}
           onChange={selectTime}
-          disabled={disabled} />
+          disabled={disabled}
+          clazz={timeClass} />
       </Row>
       <ValidationError message={'Пожалуйста, выберите дату'} show={dayError}/>
       <ValidationError message={'Пожалуйста, выберите время'} show={timeError}/>
@@ -54,7 +59,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     selectDay: selectDay(),
     selectTime: selectTime(),
-    validateSelect,
+    validateDay,
+    validateTime,
   }, dispatch)
 };
 

@@ -24,6 +24,7 @@ export default class Select extends Component {
       defaultValue,
       disabled,
       onBlur,
+      clazz,
     } = this.props;
 
     const { selected } = this.state;
@@ -49,7 +50,7 @@ export default class Select extends Component {
 
     return (
       <select
-        className="select input"
+        className={`select input ${clazz}`}
         value={selected ? selected : defaultValue}
         disabled={disabled}
         onBlur={(e) => {

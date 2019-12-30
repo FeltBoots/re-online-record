@@ -122,9 +122,16 @@ const validatePhone = (phone) => {
   }
 };
 
-const validateSelect = (selected) => {
+const validateDay = (selected) => {
   return {
-    type: 'VALIDATE_SELECT',
+    type: 'VALIDATE_DAY',
+    payload: selected
+  }
+};
+
+const validateTime = (selected) => {
+  return {
+    type: 'VALIDATE_TIME',
     payload: selected
   }
 };
@@ -139,5 +146,6 @@ export {
   selectName,
   validateName,
   validatePhone,
-  validateSelect,
+  validateDay,
+  validateTime,
 };
