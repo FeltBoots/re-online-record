@@ -76,10 +76,13 @@ const selectPhone = (value) => {
   }
 };
 
-const selectName = (name) => {
-  return {
+const selectName = () => (name) => (dispatch) => {
+  dispatch({
     type: 'SELECT_NAME',
     payload: name
+  });
+  if (name !== '') {
+    dispatch(validateName(name));
   }
 };
 
@@ -105,6 +108,13 @@ const fetchCities = (recordService) => () => (dispatch) => {
     .catch((err) => dispatch(citiesError(err)));
 };
 
+const validateName = (name) => {
+  return {
+    type: 'VALIDATE_NAME',
+    payload: name
+  }
+};
+
 export {
   fetchCities,
   fetchTimetable,
@@ -113,4 +123,5 @@ export {
   selectTime,
   selectPhone,
   selectName,
+  validateName,
 };
