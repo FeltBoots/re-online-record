@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from 'react-redux';
 import './city-info.css';
+import '../app/app.css';
 
 const formatPhones = (phones) => {
   const toFormat = (p) => `+${p[0]} (${p.slice(1, 4)}) ${p.slice(4, 7)}-${p.slice(7, 9)}-${p.slice(9)}`;

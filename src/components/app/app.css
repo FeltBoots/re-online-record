@@ -37,3 +37,21 @@ body {
     -webkit-box-shadow: 0 5px 15px 0 hsla(0,0%,55%,.5);
     box-shadow: 0 5px 15px 0 hsla(0,0%,55%,.5);
 }
+
+.link {
+    color: #1b75cc;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1.2;
+    -webkit-transition: border-color .15s ease-out;
+    transition: border-color .15s ease-out;
+    border-bottom: 1px solid;
+    border-color: transparent;
+}
+
+.link:hover,
+.link:active {
+    color: #db001b;
+    outline: none;
+}
