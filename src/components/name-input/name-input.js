@@ -1,21 +1,36 @@
-import React from "react";
-import { selectName } from "../../actions";
+import React, { Fragment } from "react";
+import { selectName, validateName } from "../../actions";
 import { connect } from "react-redux";
+import ValidationError from "../validation-error";
+import { bindActionCreators } from "redux";
 
-const NameInput = ({ selectName }) => {
+const NameInput = ({ selectName, nameError, validateName}) => {
   return (
-    <input
-      className="input"
-      type="text"
-      placeholder="Ваше имя"
-      onChange={(e) => {
-        selectName(e.target.value);
-      }}/>
+    <Fragment>
+      <input
+        className="input"
+        type="text"
+        placeholder="Ваше имя"
+        onBlur={(e) => {
+          validateName(e.target.value);
+        }}
+        onChange={(e) => {
+          selectName(e.target.value);
+        }}/>
+      <ValidationError message="Пожалуйста, укажите имя" show={nameError}/>
+    </Fragment>
   )
 };
 
-const mapDispatchToProps = {
-  selectName,
+const mapStateToProps = ({ validationErrors: { nameError } }) => {
+  return { nameError };
 };
 
-export default connect(null, mapDispatchToProps)(NameInput);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    selectName: selectName(),
+    validateName,
+  }, dispatch)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NameInput);
