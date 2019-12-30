@@ -1,50 +1,46 @@
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
+import React, { Fragment } from "react";
 import { connect } from 'react-redux';
 import withRecordService from "../hoc";
-import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
+import Header from "../header";
+
+import CityPicker from "../city-picker";
+import TimePicker from "../time-picker";
+import NameInput from "../name-input";
+import PhoneInput from "../phone-input";
+import CityInfo from "../city-info";
 
 import { compose } from "../../utils";
-import { fetchCities } from "../../actions";
 
-class RecordFormContainer extends Component {
-  componentDidMount() {
-    this.props.fetchCities();
+import './record-form.css';
+
+const RecordFormContainer = ({ loading, error }) => {
+
+  if (error) {
+    return <ErrorIndicator />
   }
 
-  render() {
-    const { cities, loading, error } = this.props;
+  const loadingEffect = loading ? 'loading-effect' : null;
 
-    if (loading) {
-      return <Spinner />
-    }
-
-    if (error) {
-      return <ErrorIndicator />
-    }
-
-    console.log(cities);
-
-    return (
-      <form>
-        <input type="text"/>
+  return (
+    <Fragment>
+      <Header />
+      <form className={`record-form ${loadingEffect}`}>
+        <CityPicker />
+        <TimePicker />
+        <CityInfo   />
+        <PhoneInput />
+        <NameInput  />
       </form>
-    );
-  }
-}
-
-const mapStateToProps = ({ cities, loading, error }) => {
-  return { cities, loading, error };
+    </Fragment>
+  );
 };
 
-const mapDispatchToProps = (dispatch, { bookstoreService }) => {
-  return bindActionCreators({
-    fetchCities: fetchCities(bookstoreService),
-  }, dispatch)
+const mapStateToProps = ({ data: { loading, error  } }) => {
+  return { loading, error };
 };
 
 export default compose(
   withRecordService(),
-  connect(mapStateToProps, mapDispatchToProps)
+  connect(mapStateToProps, null)
 )(RecordFormContainer);
