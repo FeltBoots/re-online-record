@@ -22,6 +22,8 @@ export default class Select extends Component {
       name,
       onChange,
       defaultValue,
+      disabled,
+      onBlur,
     } = this.props;
 
     const { selected } = this.state;
@@ -49,10 +51,16 @@ export default class Select extends Component {
       <select
         className="select input"
         value={selected ? selected : defaultValue}
+        disabled={disabled}
+        onBlur={(e) => {
+          if (onBlur) onBlur(selected);
+        }}
         onChange={(e) => {
-          onChange(e.target.value);
+          const value = e.target.value;
+          onChange(value);
+          if (onBlur) onBlur(value);
           this.setState({
-            selected: e.target.value
+            selected: value
           });
         }}>
         {options}
