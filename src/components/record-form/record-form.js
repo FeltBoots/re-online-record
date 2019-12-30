@@ -4,6 +4,7 @@ import withRecordService from "../hoc";
 import ErrorIndicator from "../error-indicator";
 import Header from "../header";
 import SubmitButton from "../submit-button";
+import PrivacyPolicy from "../privacy-policy";
 
 import CityPicker from "../city-picker";
 import TimePicker from "../time-picker";
@@ -33,6 +34,7 @@ const RecordFormContainer = ({ loading, error }) => {
         <PhoneInput />
         <NameInput  />
         <SubmitButton />
+        <PrivacyPolicy />
       </form>
     </Fragment>
   );
