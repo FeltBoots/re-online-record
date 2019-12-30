@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import { connect } from 'react-redux';
-import withRecordService from "../hoc";
 import ErrorIndicator from "../error-indicator";
 import Header from "../header";
 import SubmitButton from "../submit-button";
 import PrivacyPolicy from "../privacy-policy";
+import FormItem from "../form-item";
 
 import CityPicker from "../city-picker";
 import TimePicker from "../time-picker";
@@ -28,13 +28,27 @@ const RecordFormContainer = ({ loading, error }) => {
     <Fragment>
       <Header />
       <form className={`record-form ${loadingEffect}`}>
-        <CityPicker />
-        <TimePicker />
-        <CityInfo   />
-        <PhoneInput />
-        <NameInput  />
-        <SubmitButton />
-        <PrivacyPolicy />
+        <FormItem>
+          <CityPicker />
+        </FormItem>
+        <FormItem>
+          <TimePicker />
+        </FormItem>
+        <FormItem>
+          <CityInfo />
+        </FormItem>
+        <FormItem>
+          <PhoneInput />
+        </FormItem>
+        <FormItem>
+          <NameInput />
+        </FormItem>
+        <FormItem>
+          <SubmitButton />
+        </FormItem>
+        <FormItem>
+          <PrivacyPolicy />
+        </FormItem>
       </form>
     </Fragment>
   );
@@ -45,6 +59,5 @@ const mapStateToProps = ({ data: { loading, error  } }) => {
 };
 
 export default compose(
-  withRecordService(),
   connect(mapStateToProps, null)
 )(RecordFormContainer);
