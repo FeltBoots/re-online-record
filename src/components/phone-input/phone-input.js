@@ -3,16 +3,18 @@ import InputMask from 'react-input-mask';
 import { selectPhone, validatePhone } from "../../actions";
 import { connect } from "react-redux";
 import ValidationError from "../validation-error";
+import '../app/app.css';
 
 const isEqual = (value) => {
   return value.match(/\+\d \(\d{3}\) \d{3}-\d{2}-\d{2}/);
 };
 
 const PhoneInput = ({ selectPhone, validatePhone, phoneError }) => {
+  const errorClass = phoneError ? 'error' : null;
   return (
     <Fragment>
       <InputMask
-        className="input"
+        className={`input ${errorClass}`}
         alwaysShowMask={true}
         mask="+7 (999) 999-99-99"
         maskChar={'_'}
