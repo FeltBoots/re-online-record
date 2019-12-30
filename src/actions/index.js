@@ -69,13 +69,20 @@ const selectDay = () => (idx) => (dispatch) => {
   dispatch(setAvailableTime(idx));
 };
 
+const selectPhone = (value) => {
+  return {
+    type: 'SELECT_PHONE',
+    payload: value
+  }
+};
+
 const fetchTimetable = (recordService) => (cityId) => (dispatch) => {
+  dispatch(selectCity(cityId));
   dispatch(timetableRequested());
   recordService.getCityInfo(cityId)
     .then((data) => {
       dispatch(timetableLoaded(formatTimetable(data)));
-      selectDay()(0)(dispatch);
-      dispatch(selectCity(cityId));
+      // selectDay()(0)(dispatch);
     })
     .catch((err) => dispatch(timetableError(err)));
 };
@@ -85,7 +92,7 @@ const fetchCities = (recordService) => () => (dispatch) => {
   recordService.getCities()
     .then((data) => {
       dispatch(citiesLoaded(data.cities));
-      dispatch(selectCity(data.cities[0]));
+      // dispatch(selectCity(data.cities[0]));
       fetchTimetable(recordService)(data.cities[0].id)(dispatch);
     })
     .catch((err) => dispatch(citiesError(err)));
@@ -97,4 +104,5 @@ export {
   setAvailableTime,
   selectDay,
   selectTime,
+  selectPhone,
 };
