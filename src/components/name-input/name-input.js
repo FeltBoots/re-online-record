@@ -1,9 +1,21 @@
 import React from "react";
+import { selectName } from "../../actions";
+import { connect } from "react-redux";
 
-const NameInput = () => {
+const NameInput = ({ selectName }) => {
   return (
-    <div>Name Input!</div>
+    <input
+      className="input"
+      type="text"
+      placeholder="Ваше имя"
+      onChange={(e) => {
+        selectName(e.target.value);
+      }}/>
   )
 };
 
-export default NameInput;
+const mapDispatchToProps = {
+  selectName,
+};
+
+export default connect(null, mapDispatchToProps)(NameInput);

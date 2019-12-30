@@ -30,6 +30,12 @@ const updateFormValues = (state, action) => {
         ...formValues,
         phone,
       };
+    case 'SELECT_NAME':
+      const name = action.payload;
+      return {
+        ...formValues,
+        name,
+      };
     default:
       return state.formValues;
   }

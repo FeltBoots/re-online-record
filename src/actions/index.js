@@ -76,6 +76,13 @@ const selectPhone = (value) => {
   }
 };
 
+const selectName = (name) => {
+  return {
+    type: 'SELECT_NAME',
+    payload: name
+  }
+};
+
 const fetchTimetable = (recordService) => (cityId) => (dispatch) => {
   dispatch(selectCity(cityId));
   dispatch(timetableRequested());
@@ -105,4 +112,5 @@ export {
   selectDay,
   selectTime,
   selectPhone,
+  selectName,
 };
