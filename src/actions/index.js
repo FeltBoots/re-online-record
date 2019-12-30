@@ -122,6 +122,13 @@ const validatePhone = (phone) => {
   }
 };
 
+const validateSelect = (selected) => {
+  return {
+    type: 'VALIDATE_SELECT',
+    payload: selected
+  }
+};
+
 export {
   fetchCities,
   fetchTimetable,
@@ -132,4 +139,5 @@ export {
   selectName,
   validateName,
   validatePhone,
+  validateSelect,
 };
