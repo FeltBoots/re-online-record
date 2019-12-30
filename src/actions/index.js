@@ -115,6 +115,13 @@ const validateName = (name) => {
   }
 };
 
+const validatePhone = (phone) => {
+  return {
+    type: 'VALIDATE_PHONE',
+    payload: phone
+  }
+};
+
 export {
   fetchCities,
   fetchTimetable,
@@ -124,4 +131,5 @@ export {
   selectPhone,
   selectName,
   validateName,
+  validatePhone,
 };
