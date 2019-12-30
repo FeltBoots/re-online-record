@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import withRecordService from "../hoc";
 import ErrorIndicator from "../error-indicator";
 import Header from "../header";
+import SubmitButton from "../submit-button";
 
 import CityPicker from "../city-picker";
 import TimePicker from "../time-picker";
@@ -31,6 +32,7 @@ const RecordFormContainer = ({ loading, error }) => {
         <CityInfo   />
         <PhoneInput />
         <NameInput  />
+        <SubmitButton />
       </form>
     </Fragment>
   );
