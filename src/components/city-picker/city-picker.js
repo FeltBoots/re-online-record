@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, { Component } from "react";
 import Select from "../select";
 import { bindActionCreators } from "redux";
 import { fetchCities, fetchTimetable } from "../../actions";
@@ -14,36 +14,21 @@ class CityPickerContainer extends Component {
   render() {
     const {
       cities,
-      city,
       fetchTimetable,
     } = this.props;
 
-    if (!cities) {
-      return <p>loading</p>;
-    }
-
     return (
-      <Fragment>
-        <Select
-          items={cities}
-          value={'id'}
-          name={'name'}
-          onChange={fetchTimetable} />
-        {
-          city ?
-            <div>
-              <p>{city.address}</p>
-              <p>{city.phones}</p>
-              <p>{city.price}</p>
-            </div> : null
-        }
-      </Fragment>
+      <Select
+        items={cities}
+        value={'id'}
+        name={'name'}
+        onChange={fetchTimetable} />
     );
   }
 }
 
-const mapStateToProps = ({ data: { cities }, formValues: { city } }) => {
-  return { cities, city };
+const mapStateToProps = ({ data: { cities } }) => {
+  return { cities };
 };
 
 const mapDispatchToProps = (dispatch, { recordService }) => {
