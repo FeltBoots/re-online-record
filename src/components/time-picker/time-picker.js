@@ -14,8 +14,8 @@ const TimePickerContainer = (props) => {
     selectTime,
     validateDay,
     validateTime,
-    dayError,
-    timeError,
+    day: dayError,
+    time: timeError,
   } = props;
 
   const disabled = availableTime ? 0 : 1;
@@ -50,17 +50,27 @@ const TimePickerContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { data: { timetable: { days, availableTime } } } = state;
-  const { validationErrors: { dayError, timeError } } = state;
-  return { days, availableTime, dayError, timeError };
+  const {
+    data: {
+      timetable: {
+        days,
+        availableTime
+      }
+    },
+    validationErrors: {
+      day,
+      time
+    }
+  } = state;
+  return { days, availableTime, day, time };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     selectDay: selectDay(),
     selectTime: selectTime(),
-    validateDay,
-    validateTime,
+    validateDay: validateDay(),
+    validateTime: validateTime(),
   }, dispatch)
 };
 
