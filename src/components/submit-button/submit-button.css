@@ -40,7 +40,8 @@
     transform: translateY(1px);
 }
 
-.submit-button .button-disabled {
+.submit-button .button-disabled,
+.submit-button .button-disabled:hover {
     opacity: 1;
     background: #c1c1c1;
     -webkit-box-shadow: none;
