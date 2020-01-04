@@ -4,7 +4,7 @@ import './message-indicator.css';
 
 const MessageIndicator = ({ clazz, children }) => {
   return (
-    <div className={`app ${clazz}`}>
+    <div className={`message-indicator ${clazz}`}>
       { children }
     </div>
   )
