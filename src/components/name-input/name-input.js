@@ -5,7 +5,7 @@ import ValidationError from "../validation-error";
 import { bindActionCreators } from "redux";
 import '../app/app.css';
 
-const NameInput = ({ selectName, nameError, validateName }) => {
+const NameInput = ({ selectName, name: nameError, validateName }) => {
   const errorClass = nameError ? 'error' : null;
   return (
     <Fragment>
@@ -24,14 +24,14 @@ const NameInput = ({ selectName, nameError, validateName }) => {
   )
 };
 
-const mapStateToProps = ({ validationErrors: { nameError } }) => {
-  return { nameError };
+const mapStateToProps = ({ validationErrors: { name } }) => {
+  return { name };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
+    validateName: validateName(),
     selectName: selectName(),
-    validateName,
   }, dispatch)
 };
 
