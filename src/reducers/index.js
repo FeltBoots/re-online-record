@@ -1,6 +1,7 @@
 import updateData from "./data";
 import updateFormValues from "./form-values";
 import updateValidationErrors from "./form-validation";
+import updateSubmitAvailable from "./submit";
 
 const initialState = {
   data: {
@@ -21,11 +22,12 @@ const initialState = {
     phone: null,
   },
   validationErrors: {
-    dayError: null,
-    timeError: null,
-    nameError: null,
-    phoneError: null,
+    day: null,
+    time: null,
+    name: null,
+    phone: null,
   },
+  submitAvailable: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +35,7 @@ const reducer = (state = initialState, action) => {
     data: updateData(state, action),
     formValues: updateFormValues(state, action),
     validationErrors: updateValidationErrors(state, action),
+    submitAvailable: updateSubmitAvailable(state, action),
   }
 };
 
