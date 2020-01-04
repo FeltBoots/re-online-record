@@ -97,6 +97,7 @@ const submitDataRequest = () => (values) => (dispatch) => {
       const key = `${cityId}+${name}+${Math.random() * 50}`;
       localStorage.setItem(key, JSON.stringify(record));
       dispatch(submitSucceeded());
+      dispatch(clearFormValues());
     } catch (e) {
       dispatch(submitError(e));
     }
@@ -119,6 +120,12 @@ const submitError = (error) => {
   return {
     type: 'SUBMIT_FAILURE',
     payload: error
+  }
+};
+
+const clearFormValues = () => {
+  return {
+    type: 'CLEAR_FORM_VALUES'
   }
 };
 

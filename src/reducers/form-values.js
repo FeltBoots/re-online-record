@@ -37,6 +37,14 @@ const updateFormValues = (state, action) => {
         ...formValues,
         name,
       };
+    case 'CLEAR_FORM_VALUES':
+      return {
+        city: null,
+        day: null,
+        time: null,
+        name: null,
+        phone: null,
+      };
     default:
       return state.formValues;
   }
