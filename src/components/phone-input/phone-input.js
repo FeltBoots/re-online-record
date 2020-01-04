@@ -4,12 +4,9 @@ import { selectPhone, validatePhone } from "../../actions";
 import { connect } from "react-redux";
 import ValidationError from "../validation-error";
 import '../app/app.css';
+import { bindActionCreators } from "redux";
 
-const isEqual = (value) => {
-  return value.match(/\+\d \(\d{3}\) \d{3}-\d{2}-\d{2}/);
-};
-
-const PhoneInput = ({ selectPhone, validatePhone, phoneError }) => {
+const PhoneInput = ({ selectPhone, validatePhone, phone: phoneError }) => {
   const errorClass = phoneError ? 'error' : null;
   return (
     <Fragment>
@@ -22,8 +19,6 @@ const PhoneInput = ({ selectPhone, validatePhone, phoneError }) => {
         onChange={(e) => {
           const value = e.target.value;
           selectPhone(value);
-          if (isEqual(value))
-            validatePhone(value);
         }} />
       <ValidationError
         message="Пожалуйста, введите корректный телефон, иначе наши специалисты не смогут связаться с вами"
@@ -32,13 +27,15 @@ const PhoneInput = ({ selectPhone, validatePhone, phoneError }) => {
   );
 };
 
-const mapStateToProps = ({ validationErrors: { phoneError } }) => {
-  return { phoneError };
+const mapStateToProps = ({ validationErrors: { phone } }) => {
+  return { phone };
 };
 
-const mapDispatchToProps = {
-  selectPhone,
-  validatePhone,
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    selectPhone: selectPhone(),
+    validatePhone: validatePhone(),
+  }, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhoneInput);
