@@ -68,8 +68,63 @@ const setAvailableTime = (timeIdx) => {
   }
 };
 
+const submitDataRequest = () => (values) => (dispatch) => {
+  const mockyDelay = 1200;
+  const {
+    city: {
+      id: cityId,
+      name: city
+    },
+    day : {
+      day
+    },
+    time: {
+      time
+    },
+    name
+  } = values;
+
+  const record = {
+    city,
+    day,
+    time,
+    name
+  };
+
+  dispatch(submitRequested());
+  setTimeout(() => {
+    try {
+      const key = `${cityId}+${name}+${Math.random() * 50}`;
+      localStorage.setItem(key, JSON.stringify(record));
+      dispatch(submitSucceeded());
+    } catch (e) {
+      dispatch(submitError(e));
+    }
+  }, mockyDelay);
+};
+
+const submitRequested = () => {
+  return {
+    type: 'SUBMIT_REQUEST',
+  }
+};
+
+const submitSucceeded = () => {
+  return {
+    type: 'SUBMIT_SUCCESS',
+  }
+};
+
+const submitError = (error) => {
+  return {
+    type: 'SUBMIT_FAILURE',
+    payload: error
+  }
+};
+
 export {
   fetchCities,
   fetchTimetable,
   setAvailableTime,
+  submitDataRequest,
 };

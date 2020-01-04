@@ -1,7 +1,7 @@
 import updateData from "./data";
 import updateFormValues from "./form-values";
 import updateValidationErrors from "./form-validation";
-import updateSubmitAvailable from "./submit";
+import updateSubmitAvailable from "./submit-available";
 
 const initialState = {
   data: {

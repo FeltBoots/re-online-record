@@ -51,6 +51,21 @@ const updateData = (state, action) => {
         loading: false,
         error: null,
       };
+    case 'SUBMIT_REQUEST':
+      return {
+        ...state.data,
+        loading: true,
+      };
+    case 'SUBMIT_SUCCESS':
+      return {
+        ...state.data,
+        loading: false,
+      };
+    case 'SUBMIT_FAILURE':
+      return {
+        ...state.data,
+        loading: false,
+      };
     default:
       return state.data;
   }

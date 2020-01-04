@@ -2,6 +2,7 @@ import {
   fetchCities,
   fetchTimetable,
   setAvailableTime,
+  submitDataRequest,
 } from './data-actions';
 
 import {
@@ -10,7 +11,6 @@ import {
   selectDay,
   selectName,
   selectPhone,
-  submitData,
 } from './form-actions';
 
 import {
@@ -29,7 +29,7 @@ export {
   selectDay,
   selectName,
   selectPhone,
-  submitData,
+  submitDataRequest,
   validateDay,
   validateName,
   validatePhone,

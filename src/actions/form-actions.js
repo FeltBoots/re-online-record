@@ -51,18 +51,10 @@ const selectName = () => (name) => (dispatch) => {
   }
 };
 
-const submitData = (values) => {
-  return {
-    type: 'SUBMIT_DATA',
-    payload: values
-  }
-};
-
 export {
   selectCity,
   selectTime,
   selectDay,
   selectName,
   selectPhone,
-  submitData,
 };
