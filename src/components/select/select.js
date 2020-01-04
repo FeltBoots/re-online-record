@@ -54,14 +54,12 @@ export default class Select extends Component {
         value={selected ? selected : defaultValue}
         disabled={disabled}
         onBlur={(e) => {
-          if (onBlur) onBlur(selected);
+          if (onBlur) onBlur(e.target.value);
         }}
         onChange={(e) => {
-          const value = e.target.value;
-          onChange(value);
-          if (onBlur) onBlur(value);
+          if (onChange) onChange(e.target.value);
           this.setState({
-            selected: value
+            selected: e.target.value
           });
         }}>
         {options}
