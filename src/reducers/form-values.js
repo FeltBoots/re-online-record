@@ -4,6 +4,7 @@ const updateFormValues = (state, action) => {
     case 'SELECT_CITY':
       const city = state.data.cities.find(({id}) => id === action.payload);
       return {
+        ...formValues,
         city,
         day: null,
         time: null,

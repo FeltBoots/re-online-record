@@ -1,33 +1,31 @@
-const isEqual = (value) => {
-  return value.match(/\+\d \(\d{3}\) \d{3}-\d{2}-\d{2}/);
-};
+import { isEqual } from "../utils";
 
 const updateValidationErrors = (state, action) => {
-  const formValues = state.validationErrors;
+  const validationErrors = state.validationErrors;
   switch (action.type) {
     case 'VALIDATE_NAME':
-      const nameError = action.payload === '';
+      const name = action.payload === '';
       return {
-        ...formValues,
-        nameError,
+        ...validationErrors,
+        name,
       };
     case 'VALIDATE_PHONE':
-      const phoneError = !isEqual(action.payload);
+      const phone = !isEqual(action.payload);
       return {
-        ...formValues,
-        phoneError,
+        ...validationErrors,
+        phone,
       };
     case 'VALIDATE_DAY':
-      const dayError = !!!action.payload;
+      const day = !!!action.payload;
       return {
-        ...formValues,
-        dayError,
+        ...validationErrors,
+        day,
       };
     case 'VALIDATE_TIME':
-      const timeError = !!!action.payload;
+      const time = !!!action.payload;
       return {
-        ...formValues,
-        timeError,
+        ...validationErrors,
+        time,
       };
     default:
       return state.validationErrors;
