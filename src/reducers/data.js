@@ -60,6 +60,7 @@ const updateData = (state, action) => {
       return {
         ...state.data,
         loading: false,
+        submit: true,
       };
     case 'SUBMIT_FAILURE':
       return {

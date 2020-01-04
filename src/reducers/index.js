@@ -13,6 +13,7 @@ const initialState = {
     },
     loading: null,
     error: null,
+    submit: null,
   },
   formValues: {
     city: null,
