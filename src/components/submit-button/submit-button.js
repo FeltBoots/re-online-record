@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import { validateBeforeSubmit } from "../../actions";
 import './submit-button.css';
 
-const SubmitButton = ({ submitAvailable }) => {
+const SubmitButton = ({ submitAvailable, validateBeforeSubmit }) => {
   const buttonDisabled = !submitAvailable ? 'button-disabled' : null;
   return (
     <div className="submit-button">
-      <button type="submit" className={buttonDisabled}>Записаться</button>
+      <button type="submit" className={buttonDisabled} onClick={validateBeforeSubmit}>Записаться</button>
     </div>
   )
 };
@@ -15,4 +16,8 @@ const mapStateToProps = ({ submitAvailable }) => {
   return { submitAvailable };
 };
 
-export default connect(mapStateToProps, null)(SubmitButton);
+const mapDispatchToProps = {
+  validateBeforeSubmit,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SubmitButton);

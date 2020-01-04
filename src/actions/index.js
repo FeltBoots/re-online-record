@@ -18,6 +18,7 @@ import {
   validateName,
   validatePhone,
   validateTime,
+  validateBeforeSubmit,
 } from './validate-actions';
 
 export {
@@ -34,4 +35,5 @@ export {
   validateName,
   validatePhone,
   validateTime,
+  validateBeforeSubmit,
 };

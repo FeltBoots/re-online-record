@@ -32,9 +32,16 @@ const validateTime = () => (selected) => (dispatch) => {
   dispatch(updateSubmitAvailable());
 };
 
+const validateBeforeSubmit = () => {
+  return {
+    type: 'VALIDATE_BEFORE_SUBMIT'
+  }
+};
+
 export {
   validateDay,
   validateName,
   validatePhone,
   validateTime,
+  validateBeforeSubmit,
 };

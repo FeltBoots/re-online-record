@@ -1,4 +1,4 @@
-import { isEqual } from "../utils";
+import { isEqual, findErrors } from "../utils";
 
 const updateValidationErrors = (state, action) => {
   const validationErrors = state.validationErrors;
@@ -26,6 +26,10 @@ const updateValidationErrors = (state, action) => {
       return {
         ...validationErrors,
         time,
+      };
+    case 'VALIDATE_BEFORE_SUBMIT':
+      return {
+        ...findErrors(validationErrors),
       };
     default:
       return state.validationErrors;

@@ -1,10 +1,4 @@
-const findErrors = (validationErrors) => {
-  const errors = {};
-  Object.keys(validationErrors).forEach((key) => {
-    errors[key] = validationErrors[key] === null || validationErrors[key] === true;
-  });
-  return errors;
-};
+import { findErrors } from "../utils";
 
 const isSubmitAvailable = (formValues) => {
   return Object.values(findErrors(formValues)).filter((e) => e === true).length === 0;
