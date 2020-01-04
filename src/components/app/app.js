@@ -5,7 +5,7 @@ import './app.css';
 
 const App = () => {
   return (
-    <main className="container">
+    <main className="app">
       <Switch>
         <Route
           path='/'

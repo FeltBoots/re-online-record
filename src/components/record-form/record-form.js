@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { connect } from 'react-redux';
 import ErrorIndicator from "../error-indicator";
 import Header from "../header";
@@ -25,7 +25,7 @@ const RecordFormContainer = ({ loading, error, submitAvailable, formValues, subm
   const loadingEffect = loading ? 'loading-effect' : null;
 
   return (
-    <Fragment>
+    <div className="form-container">
       <Header />
       <form
         className={`record-form ${loadingEffect}`}
@@ -57,7 +57,7 @@ const RecordFormContainer = ({ loading, error, submitAvailable, formValues, subm
           <PrivacyPolicy />
         </FormItem>
       </form>
-    </Fragment>
+    </div>
   );
 };
 

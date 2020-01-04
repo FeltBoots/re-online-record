@@ -8,9 +8,12 @@ body {
     font-family: Open Sans,Helvetica,Arial,sans-serif;
     line-height: 1.55;
     color: #181818;
+}
+
+.app .form-container {
+    max-width: 540px;
     min-width: 300px;
     margin: 0 auto 0 auto;
-    max-width: 540px;
 }
 
 .input {
