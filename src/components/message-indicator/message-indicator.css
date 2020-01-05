@@ -1,5 +1,5 @@
 .app .message-indicator {
-    width: 100%;
+    width: fit-content;
     max-width: 600px;
     margin: 5rem auto 0 auto;
 }
@@ -13,8 +13,8 @@
 }
 
 .message-error {
-    color: #D8000C;
-    background-color: #FFBABA;
+    color: #ff6f4b;
+    background-color: #ffd5d6;
     background-image: url('https://i.imgur.com/GnyDvKN.png');
 }
 

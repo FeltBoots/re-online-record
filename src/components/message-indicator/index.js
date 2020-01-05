@@ -1,3 +1,11 @@
-import MessageIndicator from "./message-indicator";
+import {
+  InternalErrorIndicator,
+  NetworkErrorIndicator,
+  SuccessRecordIndicator,
+} from "./message-indicator";
 
-export default MessageIndicator;
+export {
+  InternalErrorIndicator,
+  NetworkErrorIndicator,
+  SuccessRecordIndicator,
+};
