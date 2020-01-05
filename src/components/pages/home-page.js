@@ -1,22 +1,22 @@
 import React from "react";
 import RecordForm from "../record-form";
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import MessageIndicator from "../message-indicator";
+import { NetworkErrorIndicator, SuccessRecordIndicator } from "../message-indicator";
 
-const HomePage = ({ submit }) => {
+const HomePage = ({ submit, error }) => {
   if (submit) {
-    return (
-      <MessageIndicator clazz="message-success">
-        Запись успешно создана, записи можно смотреть в <Link to="/orders"><i className="link">/orders</i></Link>
-      </MessageIndicator>
-    )
+    return <SuccessRecordIndicator />
   }
+
+  if (error) {
+    return <NetworkErrorIndicator />;
+  }
+
   return <RecordForm />
 };
 
-const mapStateToProps = ({ data: { submit } }) => {
-  return { submit }
+const mapStateToProps = ({ data: { submit, error } }) => {
+  return { submit, error }
 };
 
 export default connect(mapStateToProps, null)(HomePage);
