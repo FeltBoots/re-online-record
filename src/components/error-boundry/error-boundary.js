@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ErrorIndicator from "../error-indicator";
+import MessageIndicator from "../message-indicator";
 
 export default class ErrorBoundary extends Component {
 
@@ -13,7 +13,12 @@ export default class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <ErrorIndicator/>
+      return (
+        <MessageIndicator clazz="message-error">
+          Произошла внутренняя ошибка, свяжитесь с технической поддержкой
+          <a className="link">+8 (xxx) xxx-xx-xx</a>
+        </MessageIndicator>
+      )
     }
 
     return this.props.children;

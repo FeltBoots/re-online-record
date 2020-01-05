@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from 'react-redux';
-import ErrorIndicator from "../error-indicator";
 import Header from "../header";
 import SubmitButton from "../submit-button";
 import PrivacyPolicy from "../privacy-policy";
@@ -17,10 +16,6 @@ import CityInfo from "../city-info";
 import './record-form.css';
 
 const RecordFormContainer = ({ loading, error, submitAvailable, formValues, submitDataRequest }) => {
-
-  if (error) {
-    return <ErrorIndicator />
-  }
 
   const loadingEffect = loading ? 'loading-effect' : null;
 
