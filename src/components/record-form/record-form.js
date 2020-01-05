@@ -4,6 +4,7 @@ import Header from "../header";
 import SubmitButton from "../submit-button";
 import PrivacyPolicy from "../privacy-policy";
 import FormItem from "../form-item";
+import MessageIndicator from "../message-indicator";
 import { submitDataRequest } from "../../actions";
 import { bindActionCreators } from "redux";
 
@@ -16,6 +17,15 @@ import CityInfo from "../city-info";
 import './record-form.css';
 
 const RecordFormContainer = ({ loading, error, submitAvailable, formValues, submitDataRequest }) => {
+
+  if (error) {
+    return (
+      <MessageIndicator clazz="message-error">
+        Произошла сетевая ошибка, свяжитесь с технической поддержкой
+        <a className="link">+8 (xxx) xxx-xx-xx</a>
+      </MessageIndicator>
+    );
+  }
 
   const loadingEffect = loading ? 'loading-effect' : null;
 
