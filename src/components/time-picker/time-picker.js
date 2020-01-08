@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Select from "../select";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectDay, selectTime, validateDay, validateTime } from "../../actions";
 import Row from "../row";
-import ValidationError from "../validation-error";
+import { compose } from "../../utils";
+import { withValidationError } from '../hoc';
 
 const TimePickerContainer = (props) => {
   const {
@@ -23,29 +24,25 @@ const TimePickerContainer = (props) => {
   const timeClass = timeError ? 'error' : null;
 
   return (
-    <Fragment>
-      <Row>
-        <Select
-          items={days}
-          value={'id'}
-          name={'day'}
-          defaultValue={'День'}
-          onBlur={validateDay}
-          onChange={selectDay}
-          clazz={dayClass} />
-        <Select
-          items={availableTime}
-          value={'id'}
-          name={'time'}
-          defaultValue={'Время'}
-          onBlur={validateTime}
-          onChange={selectTime}
-          disabled={disabled}
-          clazz={timeClass} />
-      </Row>
-      <ValidationError message={'Пожалуйста, выберите дату'} show={dayError}/>
-      <ValidationError message={'Пожалуйста, выберите время'} show={timeError}/>
-    </Fragment>
+    <Row>
+      <Select
+        items={days}
+        value={'id'}
+        name={'day'}
+        defaultValue={'День'}
+        onBlur={validateDay}
+        onChange={selectDay}
+        clazz={dayClass} />
+      <Select
+        items={availableTime}
+        value={'id'}
+        name={'time'}
+        defaultValue={'Время'}
+        onBlur={validateTime}
+        onChange={selectTime}
+        disabled={disabled}
+        clazz={timeClass} />
+    </Row>
   )
 };
 
@@ -74,4 +71,16 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimePickerContainer);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withValidationError(
+    [
+      'Пожалуйста, выберите дату',
+      'Пожалуйста, выберите время',
+    ],
+    [
+      'day',
+      'time',
+    ]
+  ),
+)(TimePickerContainer);
