@@ -3,7 +3,7 @@ import Select from "../select";
 import { bindActionCreators } from "redux";
 import { fetchCities, fetchTimetable } from "../../actions";
 import { compose } from "../../utils";
-import withRecordService from "../hoc";
+import { withRecordService } from "../hoc";
 import { connect } from "react-redux";
 
 class CityPickerContainer extends Component {

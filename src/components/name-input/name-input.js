@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import ValidationError from "../validation-error";
 import { bindActionCreators } from "redux";
 import '../app/app.css';
+import { compose } from "../../utils";
+import { withValidateAndUpdate } from '../hoc';
 
-const NameInput = ({ selectName, name: nameError, validateName }) => {
+const NameInput = ({name: nameError, ...restProps}) => {
   const errorClass = nameError ? 'error' : null;
   return (
     <Fragment>
@@ -13,12 +15,7 @@ const NameInput = ({ selectName, name: nameError, validateName }) => {
         className={`input ${errorClass}`}
         type="text"
         placeholder="Ваше имя"
-        onBlur={(e) => {
-          validateName(e.target.value);
-        }}
-        onChange={(e) => {
-          selectName(e.target.value);
-        }}/>
+        {...restProps} />
       <ValidationError message="Пожалуйста, укажите имя" show={nameError}/>
     </Fragment>
   )
@@ -30,9 +27,12 @@ const mapStateToProps = ({ validationErrors: { name } }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    validateName: validateName(),
-    selectName: selectName(),
+    validate: validateName(),
+    select: selectName(),
   }, dispatch)
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NameInput);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withValidateAndUpdate(),
+)(NameInput);
