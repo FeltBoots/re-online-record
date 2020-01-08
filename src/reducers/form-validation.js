@@ -29,7 +29,7 @@ const updateValidationErrors = (state, action) => {
       };
     case 'VALIDATE_BEFORE_SUBMIT':
       return {
-        ...findErrors(validationErrors),
+        ...findErrors(validationErrors, state.formValues),
       };
     default:
       return state.validationErrors;
